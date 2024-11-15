@@ -7,8 +7,8 @@ export default defineConfig ({
   resolve: {
     alias: {
      'three/addons': 'three/examples/jsm',
-     'three/tsl': 'three/webgpu',
-     'three': 'three/webgpu'
+     'three/tsl': 'three/build/webgpu',
+     'three': 'three/build/webgpu'
     }
   }
   // Apply the top-level await plugin to our vite.config.js
