@@ -1,10 +1,10 @@
-import * as THREE from "../node_modules/three/build/three.module.js";
-import { OrbitControls } from "./three/examples/jsm/Addons.js";
-import Stats from "./three/addons/libs/stats.module.js";
-import { GUI } from "./three/addons/libs/lil-gui.module.min.js";
-import { World } from "./world";
-import { HumanPlayer } from "./players/HumanPlayer";
-import { CombatManager } from "./CombatManager";
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import Stats from 'three/addons/libs/stats.module.js';
+import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
+import { World } from './world';
+import { HumanPlayer } from './players/HumanPlayer';
+import { CombatManager } from './CombatManager';
 
 const gui = new GUI();
 
