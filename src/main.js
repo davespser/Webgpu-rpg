@@ -11,7 +11,7 @@ const gui = new GUI();
 const stats = new Stats()
 document.body.appendChild(stats.dom)
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGPURenderer({ antialias: false });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setAnimationLoop(animate);
 renderer.setPixelRatio(devicePixelRatio);
