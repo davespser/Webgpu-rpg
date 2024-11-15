@@ -12,21 +12,14 @@
 </head>
 
 <body>
-  <script type="i
-
-{
-
-"imports":{
-
-"three":"./three.js-r160/build/three.module.js",
-
-"three/addons/":"./three.js-r160/examples/jsm/"
-
+  <script type="importmap"> {
+    "imports": {
+        "three": "./node_modules/three/build/three.webgpu.js",
+        "three/tsl": "./node_modules/three/build/three.webgpu.js",
+        "three/addons/": "./node_modules/three/examples/jsm/"
+    }
 }
-
-}
-
-</script>
+  </script>
   <script type="module" src="src/main.js"></script>
 </body>
 
