@@ -8,9 +8,9 @@
     "three": "^0.168.0",
     "typescript": "^5.2.2",
     "vite-plugin-top-level-await": "^1.4.1"
-  }
-}
   },
+
+  
   "scripts": {
     "dev": "vite --host 127.0.0.1"
   }
