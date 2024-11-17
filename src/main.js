@@ -1,69 +1,105 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import Stats from 'three/addons/libs/stats.module.js';
-import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
-import { World } from './world';
-import { HumanPlayer } from './players/HumanPlayer';
-import { CombatManager } from './CombatManager';
-
-const gui = new GUI();
-
+import './style.css'
+import * as THREE from 'three/tsl'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import Stats from 'three/addons/libs/stats.module.js'
+import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
+import { Terrain } from './terrain'
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+const gui = new GUI()
 const stats = new Stats()
 document.body.appendChild(stats.dom)
 
-const renderer = new THREE.WebGPURenderer({ antialias: false });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setAnimationLoop(animate);
-renderer.setPixelRatio(devicePixelRatio);
-document.body.appendChild(renderer.domElement);
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.target.set(5, 0, 5);
-camera.position.set(0, 2, 0);
-controls.update();
+const renderer = new THREE.WebGPURenderer({ antialias: true })
+renderer.toneMapping = THREE.NeutralToneMapping;
+renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setSize(window.innerWidth, window.innerHeight)
+document.body.appendChild(renderer.domElement)
 
-const world = new World(10, 10);
-scene.add(world);
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight)
+})
 
-const player1 = new HumanPlayer(new THREE.Vector3(1, 0, 5), camera, world);
-scene.add(player1);
+const scene = new THREE.Scene()
+scene.add(new THREE.AxesHelper(5))
+const frustumSize = 500;
+const aspect = window.innerWidth / window.innerHeight;
+const camera = new THREE.OrthographicCamera(
+  0.5 * frustumSize * aspect / - 30, 
+  0.5 * frustumSize * aspect / 30, 
+  frustumSize / 30, 
+  frustumSize / - 30, 
+  635, 
+  650,
+);
+camera.position.z   
+ = 153;
+ camera.position.x   
+ = 149;
+ camera.position.y   
+ = 600;
+scene.add(camera);
 
-const player2 = new HumanPlayer(new THREE.Vector3(8, 0, 3), camera, world);
-scene.add(player2);
 
-const combatManager = new CombatManager();
-combatManager.addPlayer(player1);
-combatManager.addPlayer(player2);
+const controls = new OrbitControls(camera, renderer.domElement)
+controls.update
 
-const sun = new THREE.DirectionalLight();
-sun.intensity = 3;
-sun.position.set(1, 2, 3);
-scene.add(sun);
+const Sun = new THREE.DirectionalLight();
+Sun.position.set(1, 2, 3);
+scene.add(Sun);
 
 const ambient = new THREE.AmbientLight();
 ambient.intensity = 0.5;
 scene.add(ambient);
 
+
+
+
+
+
+
+const terrain = new Terrain(10, 10);
+scene.add (terrain);
+const cameraFolder = gui.addFolder('Camera')
+cameraFolder.add(camera.position, 'z', -1, 350),
+cameraFolder.add(camera.position, 'y', -1, 800),
+cameraFolder.add(camera.position, 'x', -1, 750),
+
+cameraFolder.open()
+
 function animate() {
-  controls.update();
-  renderer.render(scene, camera);
-  stats.update();
+  requestAnimationFrame(animate)
+  controls.update
+renderer.render(scene, camera)
+
+  stats.update()
 }
 
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
+const terrainFolder = gui.addFolder('Terrain')
+terrainFolder.add(terrain, 'width', 1, 20, 1).name('Width')
+terrainFolder.add(terrain, 'height', 1, 20, 1).name('Height')
+terrainFolder.addColor(terrain.material, 'color').name('Color')
+terrainFolder.onChange()
+terrainFolder.open()
 
-const worldFolder = gui.addFolder('World');
-worldFolder.add(world, 'width', 1, 20, 1).name('Width');
-worldFolder.add(world, 'height', 1, 20, 1).name('Height');
-worldFolder.add(world, 'treeCount', 1, 100, 1).name('Tree Count');
-worldFolder.add(world, 'rockCount', 1, 100, 1).name('Rock Count');
-worldFolder.add(world, 'bushCount', 1, 100, 1).name('Bush Count');
-worldFolder.add(world, 'generate').name('Generate');
 
-combatManager.takeTurns();
+const loader = new GLTFLoader().setPath( 'models/gltf/capilla/' );
+						loader.load( 'capilla.gltf', function ( gltf ) {
+              const model = gltf.scene;
+						
+
+              model.position.set(-4, 1.2, -4);
+
+              scene.add(model);	// wait until the model can be added to the scene without blocking due to shader compilation
+            
+						} );
+
+            window.addEventListener('resize', () =>{
+              camera.aspect = window.innerWidth / window.innerHeight;
+              camera.updateProjectionMatrix();
+              renderer.setPixelRatio( window.devicePixelRatio / 2 );
+              })
+              animate()
+                
