@@ -5,6 +5,7 @@ import Stats from 'three/addons/libs/stats.module.js'
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
 import { Terrain } from './terrain'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 const gui = new GUI()
 const stats = new Stats()
 document.body.appendChild(stats.dom)
@@ -84,7 +85,10 @@ terrainFolder.addColor(terrain.material, 'color').name('Color')
 terrainFolder.onChange()
 terrainFolder.open()
 
-
+            
+const draco = new DRACOLoader()
+draco.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.5/")
+loader.setDRACOLoader( dracoLoader );
 const loader = new GLTFLoader().setPath( 'models/gltf/capilla/' );
 						loader.load( 'capilla.gltf', function ( gltf ) {
               const model = gltf.scene;
