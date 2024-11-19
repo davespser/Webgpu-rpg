@@ -86,11 +86,12 @@ terrainFolder.onChange()
 terrainFolder.open()
 
             
-const draco = new DRACOLoader()
-draco.setDecoderPath('three/examples/jsm/libs/draco/');
-loader.setDRACOLoader( dracoLoader );
-const loader = new GLTFLoader().setPath( 'models/gltf/capilla/' );
-						loader.load( 'capilla.gltf', function ( gltf ) {
+const dracoLoader = new DRACOLoader()
+dracoLoader.setDecoderPath('three/examples/jsm/libs/draco/');
+const gltfLoader = new GLTFLoader()
+gltfLoader.sethDRACOLoader(dracoLoader)
+	.setPath( 'models/gltf/capilla/' );
+gltfLoader.load( 'capilla.gltf', function ( gltf ) {
               const model = gltf.scene;
 						
 
