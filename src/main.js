@@ -87,7 +87,7 @@ terrainFolder.open()
 
             
 const draco = new DRACOLoader()
-draco.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.5/")
+draco.setDecoderPath('three/examples/jsm/libs/draco/');
 loader.setDRACOLoader( dracoLoader );
 const loader = new GLTFLoader().setPath( 'models/gltf/capilla/' );
 						loader.load( 'capilla.gltf', function ( gltf ) {
