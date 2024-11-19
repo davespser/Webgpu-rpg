@@ -91,7 +91,7 @@ dracoLoader.setDecoderPath('three/examples/jsm/libs/draco/');
 const gltfLoader = new GLTFLoader()
 gltfLoader.sethDRACOLoader(dracoLoader)
 	.setPath( 'models/gltf/capilla/' );
-gltfLoader.load( 'capilla.gltf', function ( gltf ) {
+gltfLoader.load( 'capilla2.gltf', function ( gltf ) {
               const model = gltf.scene;
 						
 
