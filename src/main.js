@@ -82,7 +82,7 @@ const loader = new GLTFLoader();
 //loader.setDRACOLoader(dracoLoader);
 
 loader.load(
-  './models/gltf/capilla/ground.glb',  // Asegúrate de que la ruta sea correcta
+  './models/gltf/capilla/capilla2.gltf',  // Asegúrate de que la ruta sea correcta
   function (gltf) {
     console.log('Modelo GLB cargado:', gltf); // Verifica que el modelo se ha cargado
     const ground = gltf.scene;
