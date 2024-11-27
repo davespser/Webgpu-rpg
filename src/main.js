@@ -88,23 +88,26 @@ terrainFolder.open()
             
 const dracoLoader = new DRACOLoader()
 dracoLoader.setDecoderPath('three/examples/jsm/libs/draco/');
-const gltfLoader = new GLTFLoader()
-gltfLoader.sethDRACOLoader(dracoLoader)
-	.setPath( 'models/gltf/capilla/' );
-gltfLoader.load( 'capilla2.gltf', function ( gltf ) {
-              const model = gltf.scene;
-						
-
-              model.position.set(-4, 1.2, -4);
-
-              scene.add(model);	// wait until the model can be added to the scene without blocking due to shader compilation
+let ground;
+loader.load(
+    './capilla2.gltf', // Replace with the path to your shiba model
+    function (gltf) {
+        ground = gltf.scene;
+        scene.add(ground);
+        gltf.scene.position.set(10, 0, 0);
+        ground.traverse(child => {
+          if (child.isMesh){
             
-						} );
+            child.material.needsUpdate = true;
+          }
+          
+        })
+    },
+    undefined,
+    function (error) {
+        console.error(error);
+    }
+);
 
-            window.addEventListener('resize', () =>{
-              camera.aspect = window.innerWidth / window.innerHeight;
-              camera.updateProjectionMatrix();
-              renderer.setPixelRatio( window.devicePixelRatio / 2 );
-              })
-              animate()
+
                 
