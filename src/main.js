@@ -77,8 +77,8 @@ terrainFolder.open();
 
 // Carga de modelo GLTF con Draco
 const loader = new GLTFLoader();
-const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath('three/examples/jsm/libs/draco/');
+//const dracoLoader = new DRACOLoader();
+//dracoLoader.setDecoderPath('three/examples/jsm/libs/draco/');
 loader.setDRACOLoader(dracoLoader);
 
 loader.load(
@@ -87,7 +87,7 @@ loader.load(
     console.log('Modelo GLB cargado:', gltf); // Verifica que el modelo se ha cargado
     const ground = gltf.scene;
     scene.add(ground);
-    ground.position.set(0, 0, 0); // Coloca el modelo en el centro de la escena
+    ground.position.set(0, 1, 0); // Coloca el modelo en el centro de la escena
 
     // Forzar materiales básicos para ver si el modelo tiene mallas
     ground.traverse((child) => {
