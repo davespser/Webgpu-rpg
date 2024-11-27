@@ -90,7 +90,7 @@ const dracoLoader = new DRACOLoader()
 dracoLoader.setDecoderPath('three/examples/jsm/libs/draco/');
 let ground;
 loader.load(
-    './capilla2.gltf', // Replace with the path to your shiba model
+    './models/gltf/capilla/ground.glb', // Replace with the path to your shiba model
     function (gltf) {
         ground = gltf.scene;
         scene.add(ground);
