@@ -4,8 +4,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import Stats from 'three/addons/libs/stats.module.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { Terrain } from './terrain';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+import { GLTFLoader } from './src/Loaders/GLTFLoader.js';
+import { DRACOLoader } from '.src/Loaders/DRACOLoader';
 
 // GUI y Stats
 const gui = new GUI();
