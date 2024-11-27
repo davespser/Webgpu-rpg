@@ -79,7 +79,7 @@ terrainFolder.open();
 const loader = new GLTFLoader();
 //const dracoLoader = new DRACOLoader();
 //dracoLoader.setDecoderPath('three/examples/jsm/libs/draco/');
-loader.setDRACOLoader(dracoLoader);
+//loader.setDRACOLoader(dracoLoader);
 
 loader.load(
   './models/gltf/capilla/ground.glb',  // Asegúrate de que la ruta sea correcta
