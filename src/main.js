@@ -82,19 +82,24 @@ dracoLoader.setDecoderPath('three/examples/jsm/libs/draco/');
 loader.setDRACOLoader(dracoLoader);
 
 loader.load(
-  './models/gltf/capilla/ground.glb',
+  './models/gltf/capilla/ground.glb',  // Asegúrate de que la ruta sea correcta
   function (gltf) {
+    console.log('Modelo GLB cargado:', gltf); // Verifica que el modelo se ha cargado
     const ground = gltf.scene;
     scene.add(ground);
-    ground.position.set(10, 0, 0);
+    ground.position.set(0, 0, 0); // Coloca el modelo en el centro de la escena
+
+    // Forzar materiales básicos para ver si el modelo tiene mallas
     ground.traverse((child) => {
       if (child.isMesh) {
-        child.material.needsUpdate = true;
+        child.material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });  // Material básico para pruebas
+        console.log('Malla del modelo:', child); // Verifica las mallas del modelo
       }
     });
   },
   undefined,
   function (error) {
-    console.error(error);
+    console.error('Error al cargar el modelo:', error);
   }
 );
+
