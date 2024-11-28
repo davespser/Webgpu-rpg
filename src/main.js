@@ -5,7 +5,7 @@ import Stats from 'three/addons/libs/stats.module.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { Terrain } from './terrain';
 import { GLTFLoader } from './src/Loaders/GLTFLoader.js';
-import { DRACOLoader } from '.src/Loaders/DRACOLoader';
+import { DRACOLoader } from './src/Loaders/DRACOLoader';
 
 // GUI y Stats
 const gui = new GUI();
