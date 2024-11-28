@@ -77,9 +77,9 @@ terrainFolder.open();
 
 // Carga de modelo GLTF con Draco
 const loader = new GLTFLoader();
-//const dracoLoader = new DRACOLoader();
-//dracoLoader.setDecoderPath('three/examples/jsm/libs/draco/');
-//loader.setDRACOLoader(dracoLoader);
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath('three/examples/jsm/libs/draco/');
+loader.setDRACOLoader(dracoLoader);
 
 loader.load(
   './models/gltf/capilla/capilla2.gltf',  // Asegúrate de que la ruta sea correcta
@@ -102,4 +102,3 @@ loader.load(
     console.error('Error al cargar el modelo:', error);
   }
 );
-
