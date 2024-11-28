@@ -49,6 +49,11 @@ const ambient = new THREE.AmbientLight();
 ambient.intensity = 0.5;
 scene.add(ambient);
 
+// Añadir luz hemisférica
+const hemiLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 1); // sky color, ground color, intensity
+hemiLight.position.set(0, 200, 0);
+scene.add(hemiLight);
+
 // Terreno
 const terrain = new Terrain(10, 10);
 scene.add(terrain);
